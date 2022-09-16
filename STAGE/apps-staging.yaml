@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/tsigian/argocd-production.git
     targetRevision: HEAD
-    path: stage-nginx
+    path: FEATURES/nginx-overlays/stage/
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
