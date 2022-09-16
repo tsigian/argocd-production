@@ -11,5 +11,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: nginx-web
-  sessionAffinity: None
+    app: nginx
