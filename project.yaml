@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1 
 kind: AppProject
 metadata:
   name: production
@@ -6,16 +6,30 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Production project
+  description: Production project 
   sourceRepos:
   - '*'
   destinations:
-  - namespace: '*'
-    server: https://kubernetes.default.svc
+    - namespace: production
+      server: https://kubernetes.default.svc
+    - namespace: argocd
+      server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  - group: ''
+    kind: Namespace
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
   namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-
+  - group: 'apps'
+    kind: Deployment
+  - group: 'apps'
+    kind: StatefulSet
+  - group: 'extensions/v1beta1'
+    kind: Ingress
+  - group: 'v1'
+    kind: Service
